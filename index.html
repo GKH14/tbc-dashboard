@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBC Bank — ემიგრანტების სეგმენტი</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #F0F4F8; color: #2D3748; font-size: 14px; }
+header { background: #1B2A4A; color: white; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+.logo span { color: #00A39B; }
+.header-meta { font-size: 12px; opacity: 0.7; text-align: right; }
+.alerts-bar { padding: 0 24px; margin-top: 12px; }
+.alert { padding: 10px 16px; border-radius: 6px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; font-weight: 500; }
+.alert.red { background: #FFF5F5; border-left: 4px solid #E53E3E; color: #742A2A; }
+.alert.yellow { background: #FFFFF0; border-left: 4px solid #D69E2E; color: #744210; }
+.alert.green { background: #F0FFF4; border-left: 4px solid #38A169; color: #1C4532; }
+.container { max-width: 1400px; margin: 0 auto; padding: 16px 24px; }
+.kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+.kpi-card { background: white; border-radius: 10px; padding: 16px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #00A39B; }
+.kpi-label { font-size: 11px; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.kpi-value { font-size: 17px; font-weight: 700; color: #1B2A4A; line-height: 1.3; }
+.main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card-title { font-size: 15px; font-weight: 700; color: #1B2A4A; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #E2E8F0; }
+.sub-title { font-size: 13px; font-weight: 700; color: #1B2A4A; margin: 16px 0 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #1B2A4A; color: white; padding: 8px 12px; text-align: left; font-weight: 600; }
+th:first-child { border-radius: 6px 0 0 6px; }
+th:last-child { border-radius: 0 6px 6px 0; }
+td { padding: 8px 12px; border-bottom: 1px solid #E2E8F0; }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #F7FAFC; }
+.fee-good { color: #38A169; font-weight: 700; }
+.fee-high { color: #E53E3E; font-weight: 700; }
+.fee-unknown { color: #A0AEC0; }
+.comp-card { padding: 12px; border-radius: 8px; background: #F7FAFC; margin-bottom: 10px; border-left: 3px solid #A0AEC0; }
+.comp-card.positive { border-left-color: #38A169; background: #F0FFF4; }
+.comp-card.negative { border-left-color: #E53E3E; background: #FFF5F5; }
+.comp-name { font-weight: 700; font-size: 13px; color: #1B2A4A; margin-bottom: 4px; }
+.comp-news { font-size: 12px; color: #4A5568; line-height: 1.5; }
+.comp-date { font-size: 11px; color: #A0AEC0; margin-top: 4px; }
+.social-item { padding: 10px 12px; border-radius: 8px; background: #F7FAFC; margin-bottom: 8px; }
+.social-country { font-weight: 700; font-size: 13px; color: #1B2A4A; margin-bottom: 4px; }
+.social-topic { font-size: 12px; color: #4A5568; line-height: 1.5; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle; }
+.tag-positive { background: #C6F6D5; color: #1C4532; }
+.tag-neutral { background: #E2E8F0; color: #2D3748; }
+.tag-negative { background: #FED7D7; color: #742A2A; }
+.tag-high { background: #FED7D7; color: #742A2A; }
+.tag-medium { background: #FEFCBF; color: #744210; }
+.tag-low { background: #C6F6D5; color: #1C4532; }
+.rec-item { padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; background: #F7FAFC; border-left: 3px solid #00A39B; }
+.rec-item.high { border-left-color: #E53E3E; }
+.rec-item.medium { border-left-color: #D69E2E; }
+.rec-item.low { border-left-color: #38A169; }
+.rec-text { font-size: 13px; color: #2D3748; line-height: 1.5; }
+.rec-source { font-size: 11px; color: #A0AEC0; margin-top: 4px; }
+footer { text-align: center; padding: 16px; color: #A0AEC0; font-size: 11px; background: white; margin-top: 8px; border-top: 1px solid #E2E8F0; }
+@media (max-width: 768px) {
+  .main-grid, .bottom-grid, .kpi-row { grid-template-columns: 1fr; }
+  header { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">TBC <span>Bank</span>&nbsp;|&nbsp;ემიგრანტების სეგმენტი</div>
+  <div class="header-meta" id="headerMeta"></div>
+</header>
+
+<div class="alerts-bar" id="alertsBar"></div>
+
+<div class="container">
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">გზავნილები სულ</div>
+      <div class="kpi-value" id="kpiTotal">—</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">გაანალიზებული ოპერატორები</div>
+      <div class="kpi-value" id="kpiOperators">—</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">ფოკუს ქვეყნები</div>
+      <div class="kpi-value">13 ქვეყანა | 300,000+ ემიგრანტი</div>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <div class="card">
+      <div class="card-title">💸 გზავნილები — ქვეყნების ჭრილში</div>
+      <canvas id="remittanceChart" style="max-height:220px"></canvas>
+      <div class="sub-title">💰 ოპერატორების ტარიფები (100€ → Georgia)</div>
+      <table id="operatorsTable">
+        <thead><tr><th>ოპერატორი</th><th>საკომისიო</th><th>სიჩქარე</th><th>შენიშვნა</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🏦 კონკურენტები</div>
+      <div id="competitorsContainer"></div>
+    </div>
+  </div>
+
+  <div class="bottom-grid">
+    <div class="card">
+      <div class="card-title">📱 სოციალური მედიის პულსი</div>
+      <div id="socialContainer"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">💡 სტრატეგიული რეკომენდაციები</div>
+      <div id="recommendationsContainer"></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>TBC Bank | ემიგრანტების სეგმენტი | Intelligence Agent | განახლება: <span id="footerDate"></span></footer>
+
+<script>
+const DATA = {
+  "generated_at": "2026-04-02",
+  "alerts": [
+    {
+      "level": "yellow",
+      "text": "მონაცემები ვერ ჩაიტვირთა — სცადე /dashboard ხელახლა"
+    }
+  ],
+  "remittance_operators": [],
+  "remittance_by_country": [],
+  "competitors": [],
+  "social_topics": [],
+  "recommendations": [],
+  "total_remittance_stat": "ვერ მოიძებნა"
+};
+
+// Header
+document.getElementById('headerMeta').innerHTML =
+  'განახლებულია: ' + (DATA.generated_at || '—') + '<br>ემიგრანტები: 300,000+ &nbsp;|&nbsp; 13 ქვეყანა';
+document.getElementById('footerDate').textContent = DATA.generated_at || '—';
+
+// Alerts
+const alertsBar = document.getElementById('alertsBar');
+(DATA.alerts || []).forEach(a => {
+  const div = document.createElement('div');
+  div.className = 'alert ' + (a.level || 'yellow');
+  const icon = a.level === 'red' ? '🔴' : a.level === 'green' ? '🟢' : '🟡';
+  div.innerHTML = '<span>' + icon + '</span><span>' + (a.text || '') + '</span>';
+  alertsBar.appendChild(div);
+});
+
+// KPIs
+document.getElementById('kpiTotal').textContent = DATA.total_remittance_stat || '—';
+const opCount = (DATA.remittance_operators || []).length;
+document.getElementById('kpiOperators').textContent = opCount ? opCount + ' ოპერატორი' : '—';
+
+// Remittance Chart
+const ctryData = DATA.remittance_by_country || [];
+if (ctryData.length > 0) {
+  new Chart(document.getElementById('remittanceChart'), {
+    type: 'bar',
+    data: {
+      labels: ctryData.map(d => (d.emoji || '') + ' ' + (d.country || '')),
+      datasets: [{
+        data: ctryData.map(d => d.share_pct || 0),
+        backgroundColor: '#00A39B',
+        borderRadius: 5,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { max: 50, ticks: { callback: function(v) { return v + '%'; } } },
+        y: { ticks: { font: { size: 12 } } }
+      }
+    }
+  });
+}
+
+// Operators Table
+const tbody = document.querySelector('#operatorsTable tbody');
+(DATA.remittance_operators || []).forEach(op => {
+  const row = tbody.insertRow();
+  const feeNum = parseFloat((op.fee || '').replace('%', ''));
+  const feeClass = isNaN(feeNum) ? 'fee-unknown' : feeNum < 1 ? 'fee-good' : feeNum > 2 ? 'fee-high' : '';
+  row.innerHTML =
+    '<td><strong>' + (op.name || '') + '</strong></td>' +
+    '<td class="' + feeClass + '">' + (op.fee || '?') + '</td>' +
+    '<td>' + (op.speed || '?') + '</td>' +
+    '<td style="color:#718096;font-size:12px">' + (op.note || '') + '</td>';
+});
+
+// Competitors
+const compContainer = document.getElementById('competitorsContainer');
+(DATA.competitors || []).forEach(c => {
+  const div = document.createElement('div');
+  div.className = 'comp-card ' + (c.sentiment || 'neutral');
+  div.innerHTML =
+    '<div class="comp-name">🏦 ' + (c.bank || '') + '</div>' +
+    '<div class="comp-news">' + (c.news || 'ახალი ინფო ვერ მოიძებნა') + '</div>' +
+    '<div class="comp-date">' + (c.date || '') + '</div>';
+  compContainer.appendChild(div);
+});
+
+// Social Topics
+const socialContainer = document.getElementById('socialContainer');
+(DATA.social_topics || []).forEach(s => {
+  const sent = s.sentiment || 'neutral';
+  const sentLabel = sent === 'positive' ? '😊 პოზიტიური' : sent === 'negative' ? '😞 ნეგატიური' : '😐 ნეიტრალური';
+  const div = document.createElement('div');
+  div.className = 'social-item';
+  div.innerHTML =
+    '<div class="social-country">' + (s.emoji || '') + ' ' + (s.country || '') +
+    '<span class="tag tag-' + sent + '">' + sentLabel + '</span></div>' +
+    '<div class="social-topic">' + (s.topic || '') + '</div>';
+  socialContainer.appendChild(div);
+});
+
+// Recommendations
+const recContainer = document.getElementById('recommendationsContainer');
+(DATA.recommendations || []).forEach(r => {
+  const prio = r.priority || 'medium';
+  const prioLabel = prio === 'high' ? '🔴 მაღალი' : prio === 'low' ? '🟢 დაბალი' : '🟡 საშუალო';
+  const div = document.createElement('div');
+  div.className = 'rec-item ' + prio;
+  div.innerHTML =
+    '<div class="rec-text">' + (r.text || '') +
+    '<span class="tag tag-' + prio + '">' + prioLabel + '</span></div>' +
+    (r.source ? '<div class="rec-source">📎 ' + r.source + '</div>' : '');
+  recContainer.appendChild(div);
+});
+</script>
+</body>
+</html>
