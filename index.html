@@ -125,271 +125,141 @@ footer { text-align: center; padding: 16px; color: #A0AEC0; font-size: 11px; bac
 
 <script>
 const DATA = {
-  "generated_at": "2026-04-02",
+  "generated_at": "2026-04-09",
   "alerts": [
     {
-      "level": "red",
-      "text": "საქართველოში შრომითი მიგრაციის კანონმდებლობის რეფორმები 2026 წლის 1 მარტიდან ამოქმედდა, რაც სავალდებულო სამუშაო ნებართვებს და აღსრულების გამკაცრებულ პროცედურებს ითვალისწინებს."
-    },
-    {
-      "level": "red",
-      "text": "აშშ-დან ფულადი გზავნილებისთვის 1%-იანი გადასახადი ამოქმედდა 2026 წლის 1 იანვრიდან, თუ გადახდა ხდება ნაღდი ფულით, Money Order-ით ან Cashier's Check-ით."
-    },
-    {
       "level": "yellow",
-      "text": "ნიგერიის ცენტრალურმა ბანკმა დიასპორის გზავნილების გაღრმავებისა და გამჭვირვალობის გაზრდის მიზნით ახალი ზომები მიიღო, რომელიც 2026 წლის 1 მაისიდან ამოქმედდება."
-    },
-    {
-      "level": "green",
-      "text": "2026 წლის იანვარში საქართველოში ფულადი გზავნილები წინა წელთან შედარებით 16.6%-ით, ხოლო თებერვალში 17.1%-ით გაიზარდა."
+      "text": "\u10db\u10dd\u10dc\u10d0\u10ea\u10d4\u10db\u10d4\u10d1\u10d8 \u10d5\u10d4\u10e0 \u10e9\u10d0\u10d8\u10e2\u10d5\u10d8\u10e0\u10d7\u10d0 \u2014 \u10e1\u10ea\u10d0\u10d3\u10d4 /dashboard \u10ee\u10d4\u10da\u10d0\u10ee\u10da\u10d0"
     }
   ],
-  "remittance_operators": [
-    {
-      "name": "Wise",
-      "fee": "0.1% - 0.41% (ტრანზაქციის მიხედვით) + ფიქსირებული საკომისიო",
-      "speed": "ინსტანტ",
-      "note": "გადარიცხვის ღირებულება 1,000 აშშ დოლარისთვის საქართველოში შეადგენს $14.74 Wise-ის ანგარიშიდან."
-    },
-    {
-      "name": "Western Union",
-      "fee": "0% (პირველი ონლაინ ტრანსფერი), ცვლადი",
-      "speed": "რამდენიმე წუთში",
-      "note": "ფასები იცვლება ტრანზაქციის მიხედვით, კომპანია ფულს შოულობს ვალუტის გაცვლიდან."
-    },
-    {
-      "name": "Remitly",
-      "fee": "$1.99 (აშშ-დან საქართველოში)",
-      "speed": "სწრაფი",
-      "note": "ახალი მომხმარებლებისთვის პირველი ტრანსფერი უფასოა და მოქმედებს სარეკლამო გაცვლითი კურსი."
-    },
-    {
-      "name": "MoneyGram",
-      "fee": "ცვლადი",
-      "speed": "სწრაფი (ქეშის ასაღებად)",
-      "note": "საკომისიო არ არის ფიქსირებული და დამოკიდებულია თანხაზე, გადახდის მეთოდზე და მიმღების მეთოდზე. საბანკო დეპოზიტი აუმჯობესებს გაცვლით კურსს."
-    },
-    {
-      "name": "TBC Bank",
-      "fee": "?",
-      "speed": "?",
-      "note": "საჯარო ინფო ვერ მოიძებნა"
-    }
-  ],
-  "remittance_by_country": [
-    {
-      "country": "იტალია",
-      "emoji": "🇮🇹",
-      "share_pct": 17.4
-    },
-    {
-      "country": "საბერძნეთი",
-      "emoji": "🇬🇷",
-      "share_pct": 8.2
-    },
-    {
-      "country": "გერმანია",
-      "emoji": "🇩🇪",
-      "share_pct": 8.9
-    },
-    {
-      "country": "ისრაელი",
-      "emoji": "🇮🇱",
-      "share_pct": 15.7
-    },
-    {
-      "country": "აშშ",
-      "emoji": "🇺🇸",
-      "share_pct": 18.9
-    },
-    {
-      "country": "სხვა EU (იტალია, საბერძნეთი, გერმანიის გარდა)",
-      "emoji": "🇪🇺",
-      "share_pct": 10.9
-    },
-    {
-      "country": "რუსეთი",
-      "emoji": "🇷🇺",
-      "share_pct": 12.9
-    },
-    {
-      "country": "სხვა",
-      "emoji": "🌍",
-      "share_pct": 7.1
-    }
-  ],
-  "competitors": [
-    {
-      "bank": "BOG",
-      "news": "საქართველოს ბანკი ემიგრანტებს სთავაზობს სრულ საბანკო სერვისებს მობილური აპლიკაციის საშუალებით, მათ შორის იპოთეკურ სესხებს, გზავნილებს, დეპოზიტებს, ციფრულ ბარათებს და სამომხმარებლო სესხებს. ასევე აქვს სპეციალური Facebook ჯგუფი და ვებგვერდი migrants.ge.",
-      "date": "2026-03-16",
-      "sentiment": "positive"
-    },
-    {
-      "bank": "Credo",
-      "news": "კრედო ბანკი ემიგრანტებს სთავაზობს დისტანციურ საბანკო მომსახურებას ვიდეო ბანკინგის მეშვეობით, მათ შორის გზავნილების გაგზავნა-მიღებას, დეპოზიტების გახსნას, იპოთეკური და სამომხმარებლო სესხების მიღებას.",
-      "date": "ვერ მოიძებნა",
-      "sentiment": "neutral"
-    },
-    {
-      "bank": "BasisBank",
-      "news": "2025 წლის აგვისტოში ეროვნულმა ბანკმა დაამტკიცა ლიბერთი ბანკის ბაზისბანკის მიერ შეძენა, სრული შერწყმა მოსალოდნელია 9-12 თვეში (შესრულდება 2026 წლის შუა რიცხვებამდე). ეს გაზრდის ბაზისბანკის წილს საცალო დაკრედიტებაში. ბაზისბანკს აკონტროლებს ჩინური Hualing Group.",
-      "date": "2025-08-13",
-      "sentiment": "neutral"
-    },
-    {
-      "bank": "Liberty",
-      "news": "ლიბერთი ბანკი, რომელიც ცნობილია პენსიებისა და სოციალური შეღავათების განაწილებით, ბაზისბანკის მიერ არის შეძენილი.",
-      "date": "2025-08-13",
-      "sentiment": "neutral"
-    }
-  ],
-  "social_topics": [
-    {
-      "country": "იტალია",
-      "emoji": "🇮🇹",
-      "topic": "ფულადი გზავნილების ზრდა, ემიგრანტების საბანკო საჭიროებები.",
-      "sentiment": "neutral"
-    },
-    {
-      "country": "გერმანია",
-      "emoji": "🇩🇪",
-      "topic": "ფულადი გზავნილების ზრდა, ემიგრანტების საბანკო საჭიროებები.",
-      "sentiment": "neutral"
-    },
-    {
-      "country": "საბერძნეთი",
-      "emoji": "🇬🇷",
-      "topic": "ფულადი გზავნილების ზრდა, ემიგრანტების საბანკო საჭიროებები.",
-      "sentiment": "neutral"
-    },
-    {
-      "country": "სხვა",
-      "emoji": "🌍",
-      "topic": "დიასპორის ინვესტიციების მობილიზება გზავნილების მიღმა (განსაკუთრებით აფრიკულ დიასპორაში), ფინტექ ინოვაციები გადახდებში, დანაზოგებში, სესხებში. შრომითი მიგრაციის კანონმდებლობის ცვლილებები საქართველოში, მათ შორის სამუშაო ნებართვების შემოღება, რაც შესაძლოა სირთულეებს შეუქმნის ემიგრანტებს.",
-      "sentiment": "neutral"
-    }
-  ],
-  "recommendations": [
-    {
-      "text": "გააუმჯობესეთ TBC-ის საჯარო ინფორმაცია ემიგრანტებისთვის განკუთვნილი სერვისებისა და საკომისიოების შესახებ, რათა გაზარდოთ გამჭვირვალობა და კონკურენტუნარიანობა.",
-      "priority": "high",
-      "source": "ანალიზი"
-    },
-    {
-      "text": "გააძლიერეთ ციფრული საბანკო სერვისები ემიგრანტებისთვის, კონკურენტების (BOG, Credo) მსგავსად, განსაკუთრებით დისტანციური ანგარიშის გახსნისა და სესხების გაცემის კუთხით.",
-      "priority": "high",
-      "source": "კონკურენტების ანალიზი"
-    },
-    {
-      "text": "შეისწავლეთ დიასპორული ინვესტიციების მობილიზების შესაძლებლობები, რათა გადაინაცვლოთ მხოლოდ გზავნილებზე ფოკუსირებიდან მდგრად საინვესტიციო ინიციატივებზე.",
-      "priority": "medium",
-      "source": "დიასპორის ინოვაციის ტენდენციები"
-    },
-    {
-      "text": "მიაწოდეთ ემიგრანტებს განახლებული ინფორმაცია საქართველოს შრომითი მიგრაციის კანონმდებლობის ცვლილებების შესახებ (2026 წლის 1 მარტიდან), რათა დაეხმაროთ მათ ახალ მოთხოვნებთან შეგუებაში.",
-      "priority": "medium",
-      "source": "საქართველოს კანონმდებლობა"
-    }
-  ],
-  "total_remittance_stat": "2025: ~$3.6B სულ საქართველოში (NBG)."
+  "remittance_operators": [],
+  "remittance_by_country": [],
+  "competitors": [],
+  "social_topics": [],
+  "recommendations": [],
+  "total_remittance_stat": "\u10d5\u10d4\u10e0 \u10db\u10dd\u10d8\u10eb\u10d4\u10d1\u10dc\u10d0"
 };
 
-// Header
-document.getElementById('headerMeta').innerHTML =
-  'განახლებულია: ' + (DATA.generated_at || '—') + '<br>ემიგრანტები: 300,000+ &nbsp;|&nbsp; 13 ქვეყანა';
+document.getElementById('headerMeta').textContent =
+  'განახლებულია: ' + (DATA.generated_at || '—') + ' | ემიგრანტები: 300,000+ | 13 ქვეყანა';
 document.getElementById('footerDate').textContent = DATA.generated_at || '—';
 
-// Alerts
 const alertsBar = document.getElementById('alertsBar');
 (DATA.alerts || []).forEach(a => {
   const div = document.createElement('div');
   div.className = 'alert ' + (a.level || 'yellow');
   const icon = a.level === 'red' ? '🔴' : a.level === 'green' ? '🟢' : '🟡';
-  div.innerHTML = '<span>' + icon + '</span><span>' + (a.text || '') + '</span>';
+  const iconSpan = document.createElement('span');
+  iconSpan.textContent = icon;
+  const textSpan = document.createElement('span');
+  textSpan.textContent = a.text || '';
+  div.appendChild(iconSpan);
+  div.appendChild(textSpan);
   alertsBar.appendChild(div);
 });
 
-// KPIs
 document.getElementById('kpiTotal').textContent = DATA.total_remittance_stat || '—';
 const opCount = (DATA.remittance_operators || []).length;
 document.getElementById('kpiOperators').textContent = opCount ? opCount + ' ოპერატორი' : '—';
 
-// Remittance Chart
 const ctryData = DATA.remittance_by_country || [];
 if (ctryData.length > 0) {
   new Chart(document.getElementById('remittanceChart'), {
     type: 'bar',
     data: {
       labels: ctryData.map(d => (d.emoji || '') + ' ' + (d.country || '')),
-      datasets: [{
-        data: ctryData.map(d => d.share_pct || 0),
-        backgroundColor: '#00A39B',
-        borderRadius: 5,
-      }]
+      datasets: [{ data: ctryData.map(d => d.share_pct || 0), backgroundColor: '#00A39B', borderRadius: 5 }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true,
+      indexAxis: 'y', responsive: true,
       plugins: { legend: { display: false } },
-      scales: {
-        x: { max: 50, ticks: { callback: function(v) { return v + '%'; } } },
-        y: { ticks: { font: { size: 12 } } }
-      }
+      scales: { x: { max: 50, ticks: { callback: function(v) { return v + '%'; } } }, y: { ticks: { font: { size: 12 } } } }
     }
   });
 }
 
-// Operators Table
 const tbody = document.querySelector('#operatorsTable tbody');
 (DATA.remittance_operators || []).forEach(op => {
   const row = tbody.insertRow();
-  const feeNum = parseFloat((op.fee || '').replace('%', ''));
+  const feeStr = (op.fee || '').replace('%', '').replace(',', '.');
+  const feeNum = parseFloat(feeStr);
   const feeClass = isNaN(feeNum) ? 'fee-unknown' : feeNum < 1 ? 'fee-good' : feeNum > 2 ? 'fee-high' : '';
-  row.innerHTML =
-    '<td><strong>' + (op.name || '') + '</strong></td>' +
-    '<td class="' + feeClass + '">' + (op.fee || '?') + '</td>' +
-    '<td>' + (op.speed || '?') + '</td>' +
-    '<td style="color:#718096;font-size:12px">' + (op.note || '') + '</td>';
+  const cells = [
+    { text: op.name || '', bold: true },
+    { text: op.fee || '?', cls: feeClass },
+    { text: op.speed || '?' },
+    { text: op.note || '', style: 'color:#718096;font-size:12px' },
+  ];
+  cells.forEach(({ text, bold, cls, style }) => {
+    const td = row.insertCell();
+    if (style) td.style.cssText = style;
+    if (cls) td.className = cls;
+    const node = bold ? document.createElement('strong') : document.createTextNode(text);
+    if (bold) { node.textContent = text; td.appendChild(node); }
+    else td.appendChild(node);
+  });
 });
 
-// Competitors
 const compContainer = document.getElementById('competitorsContainer');
 (DATA.competitors || []).forEach(c => {
   const div = document.createElement('div');
   div.className = 'comp-card ' + (c.sentiment || 'neutral');
-  div.innerHTML =
-    '<div class="comp-name">🏦 ' + (c.bank || '') + '</div>' +
-    '<div class="comp-news">' + (c.news || 'ახალი ინფო ვერ მოიძებნა') + '</div>' +
-    '<div class="comp-date">' + (c.date || '') + '</div>';
+  const nameDiv = document.createElement('div');
+  nameDiv.className = 'comp-name';
+  nameDiv.textContent = '🏦 ' + (c.bank || '');
+  const newsDiv = document.createElement('div');
+  newsDiv.className = 'comp-news';
+  newsDiv.textContent = c.news || 'ახალი ინფო ვერ მოიძებნა';
+  const dateDiv = document.createElement('div');
+  dateDiv.className = 'comp-date';
+  dateDiv.textContent = c.date || '';
+  div.appendChild(nameDiv);
+  div.appendChild(newsDiv);
+  div.appendChild(dateDiv);
   compContainer.appendChild(div);
 });
 
-// Social Topics
 const socialContainer = document.getElementById('socialContainer');
 (DATA.social_topics || []).forEach(s => {
   const sent = s.sentiment || 'neutral';
   const sentLabel = sent === 'positive' ? '😊 პოზიტიური' : sent === 'negative' ? '😞 ნეგატიური' : '😐 ნეიტრალური';
   const div = document.createElement('div');
   div.className = 'social-item';
-  div.innerHTML =
-    '<div class="social-country">' + (s.emoji || '') + ' ' + (s.country || '') +
-    '<span class="tag tag-' + sent + '">' + sentLabel + '</span></div>' +
-    '<div class="social-topic">' + (s.topic || '') + '</div>';
+  const countryDiv = document.createElement('div');
+  countryDiv.className = 'social-country';
+  countryDiv.textContent = (s.emoji || '') + ' ' + (s.country || '');
+  const tag = document.createElement('span');
+  tag.className = 'tag tag-' + sent;
+  tag.textContent = sentLabel;
+  countryDiv.appendChild(tag);
+  const topicDiv = document.createElement('div');
+  topicDiv.className = 'social-topic';
+  topicDiv.textContent = s.topic || '';
+  div.appendChild(countryDiv);
+  div.appendChild(topicDiv);
   socialContainer.appendChild(div);
 });
 
-// Recommendations
 const recContainer = document.getElementById('recommendationsContainer');
 (DATA.recommendations || []).forEach(r => {
   const prio = r.priority || 'medium';
   const prioLabel = prio === 'high' ? '🔴 მაღალი' : prio === 'low' ? '🟢 დაბალი' : '🟡 საშუალო';
   const div = document.createElement('div');
   div.className = 'rec-item ' + prio;
-  div.innerHTML =
-    '<div class="rec-text">' + (r.text || '') +
-    '<span class="tag tag-' + prio + '">' + prioLabel + '</span></div>' +
-    (r.source ? '<div class="rec-source">📎 ' + r.source + '</div>' : '');
+  const textDiv = document.createElement('div');
+  textDiv.className = 'rec-text';
+  textDiv.textContent = r.text || '';
+  const tag = document.createElement('span');
+  tag.className = 'tag tag-' + prio;
+  tag.textContent = prioLabel;
+  textDiv.appendChild(tag);
+  div.appendChild(textDiv);
+  if (r.source) {
+    const srcDiv = document.createElement('div');
+    srcDiv.className = 'rec-source';
+    srcDiv.textContent = '📎 ' + r.source;
+    div.appendChild(srcDiv);
+  }
   recContainer.appendChild(div);
 });
 </script>
